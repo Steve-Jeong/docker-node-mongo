@@ -1,0 +1,15 @@
+version: "3"
+
+# docker-compose comment line
+services:
+  mongo123: # this service is from image. The image name is the same as image name
+    image: mongo
+    ports:
+      - "27017:27017"
+  appl:     # this service is using Dockerfile. The image is <pj name>_servicename
+    build: .
+    restart: always
+    ports:
+      - "8080:3000"
+    depends_on:
+      - mongo123
